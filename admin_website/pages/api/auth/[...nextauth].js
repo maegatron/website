@@ -1,8 +1,11 @@
+import { MongoDBAdapter } from '@auth/mongodb-adapter'
 import NextAuth from 'next-auth'
 // import AppleProvider from 'next-auth/providers/apple'
 // import FacebookProvider from 'next-auth/providers/facebook'
 import GoogleProvider from 'next-auth/providers/google'
 // import EmailProvider from 'next-auth/providers/email'
+import clientPromise from '@/lib/mongodb'
+
 
 export default NextAuth({
   providers: [
@@ -28,5 +31,6 @@ export default NextAuth({
     //   server: process.env.MAIL_SERVER,
     //   from: 'NextAuth.js <no-reply@example.com>'
     // }),
-  ]
+  ],
+  adapter: MongoDBAdapter(clientPromise),
 })
